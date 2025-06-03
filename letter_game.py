@@ -3,14 +3,36 @@ import streamlit as st
 # Page config
 st.set_page_config(page_title="Hello Kitty Letters 💌", page_icon="🌸", layout="centered")
 
+# Background music toggle
+music_toggle = st.checkbox("🎵 Play Hello Kitty Music")
+
+# Inject background music with HTML (if toggle is on)
+if music_toggle:
+    st.markdown(
+        """
+        <audio autoplay loop>
+            <source src="https://www.fesliyanstudios.com/play-mp3/387" type="audio/mpeg">
+            Your browser does not support the audio element.
+        </audio>
+        """,
+        unsafe_allow_html=True
+    )
+
 # Cute header
 st.markdown("""
-    <h1 style='text-align: center; color: #e75480;'>🌸 Hello Kitty Letters 💌</h1>
-    <p style='text-align: center; color: #ffb6c1;'>Made with love by Vanshika for her second home👩‍❤️‍💋‍👩</p>
+    <div style='text-align: center;'>
+        <h1 style='color: #e75480;'>🌸 Hello Kitty Letters 💌</h1>
+        <p style='color: #ffb6c1; font-size: 18px;'>Made with love by Vanshika for her second home 👩‍❤️‍💋‍👩</p>
+        <p style='font-size: 30px;'>💖 〜(꒪꒳꒪)〜 💖</p>
+    </div>
 """, unsafe_allow_html=True)
 
+# Decorative sparkle divider
+st.markdown("<hr style='border: 1px dashed pink;'>", unsafe_allow_html=True)
+
 # Ask user for their name
-name = st.text_input("Enter your name to receive your letter:", "")
+name = st.text_input("💌 Enter your name to receive your letter:", "")
+
 
 # Messages for each friend
 letters = {
@@ -20,7 +42,7 @@ letters = {
     "samridhi": "Samridhi 🦆 — Helloooooooooooooooo SAMMMMMMMMMMMMMMM. The mom of our group, the most understanding and caring friend I've ever had. Mera dinn bhi agar bura jaa rha hota tha aur aap room aate thein na, mera mood apne aapk sahi ho jaata tha. It’s the energy you brought. Ive never felt negative around you, ive always felt like sab acha kyun hai itna. It became better for me when you started coming at 7 am In the morning, tab toh mera poora din acha jaata tha. I don’t think you understand how and where you stand in my life. Youre the most precious osul I have ever met. Thank you for impacting my life in such a wholesome and with such love. Sometimes I just used to come in ur room to feel ur presence and be happy. I miss u everytime I see a friend group playing games, I miss you everytime I see people doing yoga in the morning and a little extra when I see reels of desi dance trends on insta, its like aajkal sab aapki hi yaad dillata hai. I feel sad when I don’t feel the same positive and homely feeling with others and think who will make me feel this way now? But samridhi whenever I felt sad you were always there to talk to me, even tho you were dealing with your own problems you still listened you still patted my back, you still said “vanshika kuch khaalo, kuch peeogi?” Mughse ab yeh sab kon puchega. Main kisko hasaungi aur kiski baton pe itna hasoongi, kiske paas jaungi jab sab annoy kar rahein hote hai aur ek sane person ke paas jaaakr sabki chugli karni hoti hai, Kisko dekhungi subah yoga karte heui, kisko padhaungi exams ke liye?? \nKoi na. I wish in every Janam we are friends like this, in every universe we have rooms next to each other, in every universe I see you dancing and see your reels,in every universe I see your outfits, in every universe I see you stressing and pacing here and there for ur exams, in every universe I wake you up after 15 minutes just for you to tell me 5 minute aur, in every universe our thoughts and ideas match and we say “sahi mein yaar”, In every universe we tell eavh other ek aur game yaar, in every universe we stand in that balcony and see people and talk, in every universe we got to class together, in every universe I help you pack your stuff, in every universe I console me and say koi na. I hope im always a person you can rely on and be comfortable to talk to when you feel down because I love you so much and ill miss you even more.💗💗💗💗💗💗💗💗💗💗💗\n"
 }
 
-# Make sure input is lowercase
+# Convert name to lowercase and strip spaces
 name_lower = name.lower().strip()
 
 # Show the letter if name is found
@@ -30,6 +52,7 @@ if name_lower in letters:
             <p style='color: #d63384; font-size: 20px;'>{letters[name_lower]}</p>
             <p style='text-align: right;'>💖 Love, Vanshika</p>
         </div>
+        <p style='font-size: 25px; text-align: center;'>🌸✨🌈💖✨🌸</p>
     """, unsafe_allow_html=True)
 elif name != "":
     st.warning("Oops! I couldn’t find your name in my special Hello Kitty list 😿")
